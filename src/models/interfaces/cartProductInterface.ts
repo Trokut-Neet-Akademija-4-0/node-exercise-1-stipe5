@@ -1,9 +1,10 @@
-import products from '../productsModel'
+import { Product } from './productInterface'
 
-interface CartProduct {
+// interface za cart product
+interface ICartProduct {
   id: number
-  product: []
+  product: Product
   quantity: number
 }
 
-export default CartProduct
+export default ICartProduct

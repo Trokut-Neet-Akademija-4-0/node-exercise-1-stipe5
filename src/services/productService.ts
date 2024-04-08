@@ -8,10 +8,8 @@ class ProductService {
     return this.products
   }
 
-  getProductById(id: string): Product | undefined {
-    return this.products.find(
-      (product) => product.id === Number.parseInt(id, 10),
-    )
+  getProductById(id: number): Product | undefined {
+    return this.products.find((product) => product.id === id)
   }
 }
 
