@@ -7,6 +7,10 @@ class Student extends Osoba {
   ) {
     super(ime, dob)
   }
+
+  kloniraj(): object {
+    return new Student(this.getIme(), this.getDob(), this.brojIndeksa)
+  }
 }
 
 console.log(new Student('test', 55, 123456))

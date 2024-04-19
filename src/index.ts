@@ -8,6 +8,8 @@ import cartRoutes from './routes/cartRoutes'
 const app: Express = express()
 const port = process.env.PORT || 3000
 
+app.use(express.json())
+
 app.use('/', homeRoutes)
 app.use('/users', userRoutes)
 app.use('/products', productsRoutes)

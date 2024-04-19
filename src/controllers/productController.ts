@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express'
 import productService from '../services/productService'
+import { Product } from '../models/interfaces/productInterface'
 
 const getAllProducts = (req: Request, res: Response) => {
   const products = productService.getAllProducts()
@@ -16,4 +17,10 @@ const getProductById = (req: Request, res: Response) => {
   }
 }
 
-export { getAllProducts, getProductById }
+const createProduct = (req: Request, res: Response) => {
+  const newProduct = req.body as Product
+  console.log(req.body)
+  res.send(productService.addNewProduct(newProduct))
+}
+
+export { getAllProducts, getProductById, createProduct }
