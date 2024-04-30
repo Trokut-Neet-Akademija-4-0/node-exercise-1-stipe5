@@ -1,26 +1,32 @@
-import express, { Request, Response } from 'express'
+import { Request, Response } from 'express'
 import productService from '../services/productService'
-import { Product } from '../models/interfaces/productInterface'
+import Proizvod from '../entities/Proizvod'
+import Slike from '../entities/Slike'
 
-const getAllProducts = (req: Request, res: Response) => {
-  const products = productService.getAllProducts()
-  res.send(products)
+const getAllProducts = async (req: Request, res: Response) => {
+  res.send(await productService.getAllProducts())
 }
 
-const getProductById = (req: Request, res: Response) => {
-  const productId = Number.parseInt(req.params.id)
-  const product = productService.getProductById(productId)
-  if (product) {
-    res.send(product)
-  } else {
-    res.status(404).send('Product not found')
-  }
+const getProductById = async (req: Request, res: Response) => {
+  res.send(
+    await productService.getProductById(Number.parseInt(req.params.id, 10)),
+  )
 }
 
-const createProduct = (req: Request, res: Response) => {
-  const newProduct = req.body as Product
-  console.log(req.body)
-  res.send(productService.addNewProduct(newProduct))
+const createProduct = async (req: Request, res: Response) => {
+  const newProduct = req.body as Proizvod
+  res.send(await productService.addNewProduct(newProduct))
 }
 
-export { getAllProducts, getProductById, createProduct }
+const addProductPictures = async (req: Request, res: Response) => {
+  const productId = Number.parseInt(req.params.id, 10)
+  const newPictures = req.body as Slike[]
+  res.send(
+    await productService.addNewPicturesToExistingProduct(
+      productId,
+      newPictures,
+    ),
+  )
+}
+
+export { getAllProducts, getProductById, createProduct, addProductPictures }

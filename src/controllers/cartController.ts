@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express'
+import { Request, Response } from 'express'
 import cartService from '../services/cartService'
 
 const getCart = (req: Request, res: Response) => {

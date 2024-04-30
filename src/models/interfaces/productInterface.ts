@@ -5,7 +5,10 @@ interface Product {
   src: string
   description: string
   type: string
-  price: number
+  price: string
   discountPercent: number
+  quantity: number
+  isWireless: boolean
+  shape: number
 }
 export { Product }
